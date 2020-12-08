@@ -1,0 +1,28 @@
+.child {
+  transition: all 0.6s ease;
+  height: 180rpx;
+  opacity: 1;
+}
+
+.hide {
+  height: 0;
+  opacity: 0;
+}
+
+.kongList {
+  height: 100rpx;
+}
+
+.comm {
+  background-color: #f1f2f6;
+}
+
+.toLong {
+  max-width: 250rpx;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  word-break:break-all;
+}

@@ -1,0 +1,94 @@
+<view>
+  <view class="bg-white nav">
+    <view class="flex text-center">
+      <block wx:for="{{navbarTitle}}" wx:key="index">
+        <view class="cu-item flex-sub text-white cur radius text-center shadow-blur {{navbarActiveIndex === index ? 'bg-gradual-orange' : 'bg-grey'}}" data-navbar-index="{{index}}" catchtap="onNavBarTap">
+          <text bindinput="navName" class="{{navbarImg[index]}}">{{item==='遗失'?'我丢了...':'我捡到...'}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="list-height padding-sm">
+  <view class="padding-sm radius shadow-warp bg-white margin-top-sm">
+    <swiper style="height:1280rpx" current="{{navbarActiveIndex}}" bindanimationfinish="onBindAnimationFinish">
+      <swiper-item wx:for="{{navbarTitle}}" wx:key="index">
+        <view>
+          <form bindsubmit="btnSub">
+            <view class="cu-form-group">
+              <view class="title bg-gradual-orange radius">名称</view>
+              <input name="name" value='{{form_info}}' placeholder="校园卡、U盘、书、耳机等"></input>
+            </view>
+            <view class="cu-form-group">
+              <view class="radius title bg-gradual-orange">地点</view>
+              <input name="place" value='{{form_info}}' placeholder="工科楼、食堂等或填不知道"></input>
+            </view>
+            <view class="cu-form-group">
+              <view class="radius title bg-gradual-orange">校区</view>
+              <radio-group bindchange="radioChange" class="flex">
+                <label class="flex" wx:for="{{campus}}" wx:key="{{campus.value}}">
+                  <view class="margin-right-xs">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />
+                  </view>
+                  <view class="margin-right">{{item.name}}</view>
+                </label>
+              </radio-group>
+              <!-- <input name="campus" value='{{form_info}}' placeholder="工科楼、食堂、操场、浴池等"></input> -->
+            </view>
+            <view class="cu-form-group">
+              <view class="title bg-gradual-orange radius">时间</view>
+              <picker name="date" mode="date" start="2020-09-01" end="2024-09-01" bindchange="DateChange">
+                <view class="picker">{{date}}</view>
+              </picker>
+            </view>
+            <view class="cu-form-group">
+              <view class="title bg-gradual-orange radius">详细</view>
+              <textarea name="details" value='{{form_info}}' placeholder="请输入详细描述。例：在工科楼遗失一本黑色的工作笔记，扉页写有姓名，希望各位捡到后联系我，十分感谢。"></textarea>
+            </view>
+            <!-- 图片上传 -->
+            <view class="cu-form-group">
+              <view class="title bg-gradual-orange radius">图片上传</view>
+              <!-- <view class="action">{{imgList.length}}/1</view> -->
+              <view class="margin-top-sm grid col-3 grid-square flex-sub">
+                <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+                  <image src='{{imgList[index]}}' mode='aspectFill'></image>
+                  <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                    <text class="cuIcon-close"></text>
+                  </view>
+                </view>
+                <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+                  <text class="cuIcon-cameraadd"></text>
+                </view>
+              </view>
+            </view>
+
+            <!-- 联系方式 -->
+            <view class="cu-form-group">
+              <view class="title bg-gradual-orange radius">联系方式</view>
+              <text>请至少填写一个联系方式</text>
+            </view>
+            <view class="grid col-1 margin-left-xl padding-left-sm" style="border-top:none">
+              <view class="flex padding-sm">
+                <view class="flex-sub title cuIcon-phone">手机:</view>
+                <input class="flex-twice" name="phoneNum" value='{{form_info}}' placeholder="请输入手机号码"></input>
+              </view>
+              <view class="flex padding-sm" style="border-top:1rpx solid #eee">
+                <view class="flex-sub title cuIcon-phone">Q Q:</view>
+                <input class="flex-twice" name="qqNum" value='{{form_info}}' placeholder="请输入QQ号码"></input>
+              </view>
+              <view class="flex padding-sm" style="border-top:1rpx solid #eee">
+                <view class=" flex-sub title cuIcon-phone">微信:</view>
+                <input class="flex-twice" name="weChatNum" value='{{form_info}}' placeholder="请输入微信号码"></input>
+              </view>
+            </view>
+            <!-- end 联系方式 -->
+            <view class="action text-center padding">
+              <button class="margin cu-btn bg-gradual-orange shadow-blur round" type="primary" form-type="submit">提交</button>
+            </view>
+          </form>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
+<!-- <view class="kongList"></view> -->

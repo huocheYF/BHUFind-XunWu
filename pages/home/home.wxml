@@ -1,0 +1,89 @@
+<!-- 搜索 -->
+<form>
+  <view class="cu-bar search bg-white">
+    <view bindtap="toMeBtn" class="cu-avatar round" style="background-image:url({{avatarUrl}});"></view>
+
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input name="inputSearch" bindinput="inputS" type="text" placeholder="请输入物品关键词，如“校园卡”" confirm-type="search" value="{{inputValue}}"></input>
+    </view>
+    <view class="action">
+      <button bindtap="searchBtn" class="cu-btn bg-yellow shadow-blur round search-btn">搜索</button>
+    </view>
+  </view>
+</form>
+<!-- end 搜索 -->
+
+<!-- 校区 -->
+<view>
+  <view class="bg-white nav">
+    <view class="flex text-center">
+      <block wx:for="{{navbarTitle}}" wx:key="index">
+        <view class="cu-item flex-sub {{navbarActiveIndex === index ? 'text-orange cur' : ''}}" data-navbar-index="{{index}}" catchtap="onNavBarTap">
+          <text bindinput="navName" class="">{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<!-- end 校区 -->
+
+<!-- 公告 -->
+
+<view class="padding-left padding-right">
+  <view class="radius shadow bg-white margin-top ">
+    <view class="padding-sm">
+      <!-- <view class="">公告：欢迎来到渤大寻物微信小程序。</view> -->
+      <swiper class="textSwiper" indicator-dots="{{false}}" autoplay vertical circular interval="2000" current="{{current}}">
+        <swiper-item class="swipItem" wx:for="{{messageList}}" wx:key="{{index}}">
+          <text class="cuIcon-notification margin-right-sm"></text>
+          <text class="messageText">{{item.message}}</text>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+
+
+
+</view>
+<!-- end 公告 -->
+
+<!-- 卡片 -->
+<view wx:for="{{wuPinInfo}}" wx:key="key" class="cu-card case">
+  <view class="cu-item shadow">
+    <navigator url="/pages/home/detail/detail?wuPin_id={{item._id}}" class="image">
+      <image src="{{item.img}}" lazy-load="true" mode="aspectFill"></image>
+      <view class="cu-tag {{item.lostORfind==='遗失'?'bg-blue':'bg-green'}}">{{item.lostORfind==='遗失'?'我丢了...':'我捡到...'}}</view>
+      <view class="left padding-xs radius shadow bg-gradual-blue margin">{{item.place}} | {{item.name}}</view>
+      <view class="cu-bar bg-shadeBottom">
+        <text class="margin-bottom-sm">{{item.details}}</text>
+      </view>
+    </navigator>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item" style="height:180rpx">
+        <!-- 头像img -->
+        <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+        <view class="content flex-sub">
+          <view class="text-grey">{{item.nickName}}
+            <!-- <text class="text-red margin-left-sm">🌹 6</text> -->
+          </view>
+          <view class="text-gray text-sm flex justify-between">
+            <view>
+              <view>发布时间：{{item.addDate}}</view>
+              <view>{{item.lostORfind}}日期：{{item.date}}</view>
+            </view>
+            <!-- <view class="text-gray text-sm">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+              <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- end 卡片 -->
+<view class="padding text-center">“总得有个底吧”</view>
+
+
+<view class="kongList"></view>

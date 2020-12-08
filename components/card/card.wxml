@@ -1,0 +1,33 @@
+<!-- 卡片 -->
+<view bindtap="navto" class="cu-card case">
+  <view class="cu-item shadow">
+    <view class="image">
+      <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1181012151,1412878657&fm=26&gp=0.jpg" mode="widthFix"></image>
+      <view class="cu-tag bg-blue">遗失</view>
+      <view class="left padding-xs radius shadow bg-gradual-blue margin">工科楼AJ2 | 校园卡</view>
+      <view class="cu-bar bg-shadeBottom">
+        <text class="margin-bottom-sm">在工科楼AJ2丢失一张王帅的校园卡，信息科学与技术学院，计算机科学与技术专业的，有捡到的同学可以联系我吗。十分感谢！</text>
+      </view>
+    </view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <!-- 头像img -->
+        <view class="cu-avatar round lg" style="background-image:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604909076379&di=dcb02a258609e929c1a358b63cbbde9d&imgtype=0&src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202007%2F18%2F20200718121409_liuku.thumb.400_0.jpeg);"></view>
+        <view class="content flex-sub">
+          <view class="text-grey">火车远方
+            <!-- <text class="cuIcon-evaluate_fill text-red margin-left-sm">🌹6</text> -->
+            <text class="text-red margin-left-sm">🌹 6</text>
+          </view>
+          <view class="text-gray text-sm flex justify-between">
+            10分钟前
+            <view class="text-gray text-sm">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+              <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- end 卡片 -->

@@ -1,0 +1,16 @@
+<view class="box">
+  <view class="cu-bar tabbar bg-white">
+    <view class="action {{selected === 0 ? 'active' : 'default'}}" data-index="0" bindtap="switchTab">
+      <view class="cuIcon-home"></view> 首页
+    </view>
+
+    <view class="action add-action {{selected === 1 ? 'active' : 'default'}}" data-index="1" bindtap="switchTab">
+      <button class="cu-btn cuIcon-add bg-green shadow"></button> 发布
+    </view>
+
+    <view class="action {{selected === 2 ? 'active' : 'default'}}" data-index="2" bindtap="switchTab">
+      <view class="cuIcon-people"></view> 我的
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,125 @@
+<view class="cu-card dynamic">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{wuPinInfo.avatarUrl}});"></view>
+        <view class="content flex-sub">
+          <view>
+            <text class="toLong">{{wuPinInfo.nickName}}</text>
+            <text class="text-red margin-left-sm">🌹 {{userRose}}</text>
+          </view>
+          <view class="text-gray text-sm flex justify-between">
+            {{wuPinInfo.date}}
+          </view>
+        </view>
+        <view class="margin-right">
+          <button bindtap="toReport" class="cu-btn bg-gradual-orange shadow-blur round" style="width:150rpx" role="button" aria-disabled="false">举 报</button>
+        </view>
+      </view>
+    </view>
+    <!-- 地点时间信息 -->
+    <view class="text-content" style="max-height: 10em;">
+      <view class=" text-shadow text-grey">
+        <text class="cuIcon-ellipse text-xxl padding-right-xs"></text>名称
+        <text class="padding">{{wuPinInfo.name}}</text>
+      </view>
+      <view class=" text-shadow text-grey">
+        <text class="cuIcon-ellipse text-xxl padding-right-xs"></text>地点
+        <text class="padding">{{wuPinInfo.place}}</text>
+      </view>
+      <view class=" text-shadow text-grey">
+        <text class="cuIcon-ellipse text-xxl padding-right-xs"></text>日期
+        <text class="padding">{{wuPinInfo.date}}</text>
+      </view>
+    </view>
+
+    <!-- 详情信息 -->
+    <view class="text-content" style="max-height: 25em;">
+      {{wuPinInfo.details}}
+    </view>
+
+    <!-- 图片 -->
+    <view class="grid flex-sub padding-lr col-1">
+      <image bindtap="previewImg" class="bg-img only-img" src="{{wuPinInfo.img}}" mode="widthFix"></image>
+    </view>
+    <!-- 浏览点赞 -->
+    <!-- <view class="text-gray text-sm text-right padding">
+      <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+      <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+      <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+    </view> -->
+    <!-- 功能区域 -->
+    <view class="flex solid-bottom padding justify-around">
+      <button class="cu-btn round bg-orange shadow" role="button" aria-disabled="false" style="width:30%" bindtap="clk">{{wuPinInfo.lostORfind==="拾遗"?"认领":"归还"}}</button>
+      <button open-type="share" class="cu-btn round bg-green shadow" role="button" aria-disabled="false" style="width:30%">分享</button>
+    </view>
+
+    <!-- 联系方式 -->
+    <view class="child{{!isShow?' hide':''}}">
+      <view class="flex justify-around padding-buttom margin">
+        <view wx:if="{{wuPinInfo.weChatNum}}">
+          <text class="cuIcon-weixin lg text-green"></text>
+          <text bindtap="copyBtnWX" class="margin-left-xs">添加微信</text>
+        </view>
+
+        <view wx:if="{{wuPinInfo.qqNum}}">
+          <text class="cuIcon-link lg text-green"></text>
+          <text bindtap="copyBtnQQ" class="margin-left-xs">添加QQ</text>
+        </view>
+
+        <view wx:if="{{wuPinInfo.phoneNum}}" bindtap="callPhone">
+          <text class="cuIcon-phone lg text-green"></text>
+          <text class="margin-left-xs">拨打电话</text>
+        </view>
+      </view>
+      <!-- 已归还 -->
+      <view class="text-center">
+        <button bindtap="{{wuPinInfo.solve?'postBtnNull':'postBtn'}}" class="cu-btn round {{wuPinInfo.solve?'':'bg-red'}} shadow" role="button" aria-disabled="false">发送{{wuPinInfo.lostORfind==="拾遗"?"认领":"归还"}}请求</button>
+      </view>
+      <!-- 带输入的模态框 -->
+      <modal hidden="{{hiddenmodalput}}" title="请输入正确手机号码" confirm-text="提交" cancel-text="重置" bindcancel="postCancel" bindconfirm="postConfirm">
+        <input bindinput="postPhoneNum" class="text-center border margin" style="background-color: #f5f5f5;line-height: 84rpx;height: 84rpx;font-size: 30rpx;border-radius: 5000rpx;box-sizing: border-box;" type="number" maxlength="11" placeholder="在此输入您的手机号码" focus/>
+      </modal>
+      <!-- end 带输入的模态框 -->
+    </view>
+    <!-- end 功能区域 -->
+
+
+    <!-- 评论 -->
+    <view wx:for="{{comments}}" wx:key="key" class="cu-list menu-avatar comment solids-top">
+      <view class="cu-item">
+        <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+        <view class="content">
+          <view class="text-grey">{{item.nickName}}：</view>
+          <view class="margin-top-xs text-gray text-content text-df">
+            {{item.newComment}}
+          </view>
+          <!-- 回复
+          <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+            <view class="flex">
+              <view>name：</view>
+              <view class="flex-sub">comment</view>
+            </view>
+          </view> -->
+          <view class="margin-top-sm flex justify-between">
+            <view class="text-gray text-df">{{item.commentDate}}</view>
+            <text wx:if="{{item.openId === userinfo.openid}}" class="text-shadow text-gray" bindtap="delCommet" data-Comment="{{item.newComment}}">删除</text>
+            <!-- <view>
+              <text class="cuIcon-appreciatefill text-red"></text>
+              <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+<view class="kongList"></view>
+<view class="box" style="position:fixed;bottom:0;width:100%;">
+  <view class="cu-bar input">
+    <text class="padding-left-sm cuIcon-community text-olive text-shadow text-center" style="font-size: 55rpx;width:75rpx"></text>
+    <input bindinput="newCommentInput" class="comm padding-left-sm solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder="请在评论区留下您的线索。"></input>
+    <button bindtap="newCommentBtn" class="padding-right-sm cu-btn bg-green shadow-blur" style="width:150rpx">发送</button>
+  </view>
+</view>

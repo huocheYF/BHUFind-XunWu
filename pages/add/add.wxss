@@ -1,0 +1,23 @@
+.nav .cu-item {
+  height: 90rpx;
+  display: inline-block;
+  line-height: 80rpx;
+  margin: 10rpx 50rpx;
+  padding: 0 20rpx;
+}
+
+.radius {
+  border-radius: 31rpx;
+}
+
+.kongList{
+  height: 120rpx;
+}
+
+.cu-form-group .title{
+  padding-right: 0rpx;
+  padding: 0 15rpx;
+  margin-right: 30rpx;
+}
+
+

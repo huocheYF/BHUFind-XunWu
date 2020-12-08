@@ -1,0 +1,7 @@
+<view style="background-color: #fff600;height:100vh;">
+  <view>
+    <image  name ="logo" src="cloud://find-ghuzm.6669-find-ghuzm-1304164028/myPic/welcome-img/welcome-2_1.jpg" mode="widthFix" style="width:100%;position:fixed;top:0;"></image>
+
+    <image name="text"  src="cloud://find-ghuzm.6669-find-ghuzm-1304164028/myPic/welcome-img/welcome-2_2.jpg"  mode="widthFix" style="width:100%;position:fixed;bottom:0"></image>
+  </view>
+</view>
